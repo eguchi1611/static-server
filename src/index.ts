@@ -1,12 +1,14 @@
 import express from "express";
+import path from "path";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT ?? 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/static", express.static(path.resolve(__dirname, "../static")));
 
 app.listen(port, () => {
-  console.log("Listen, port:" + port);
+  console.log("Port:" + port);
 });
